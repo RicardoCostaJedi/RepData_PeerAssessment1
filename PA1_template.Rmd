@@ -1,8 +1,7 @@
 ---
-title: "Reproducible Research - Assessment 1"
-author: "Ricardo Costa"
-date: "July 20, 2014"
-output: html_document
+Title: "Reproducible Research - Assessment 1"
+Author: "Ricardo Costa"
+Date: "July 20, 2014"
 ---
 
 ## Topics
@@ -36,24 +35,21 @@ The data for this assignment can be downloaded by [clicking here](https://d396qu
 - date: The date on which the measurement was taken in YYYY-MM-DD format
 - interval: Identifier for the 5-minute interval in which measurement was taken
 
-The dataset is stored in a comma-separated-value (CSV) file and there are a total of 17,568 observations in this dataset. The following code chunk can be used to download data:
+The dataset is stored in a comma-separated-value (CSV) file and there are a total of 17,568 observations in this dataset. The following code chunk can be used to download and unzip data:
 
 - Downloading data
 ```{r Loading Data, echo=TRUE}
 TempZip <- tempfile()
 download.file("https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip",TempZip,method="curl")
-```  
-- Records the download date
-```{r Records Date, echo=TRUE}
 DownloadDate <- date()
-```  
-- Uncompress the downloaded file
-```{r Uncompress, echo=TRUE} 
 TempFileName = unzip(TempZip, list=TRUE)$Name[1]
 StepsDFrame <- data.frame(read.csv(unzip(TempZip, files=TempFileName, overwrite=TRUE), sep=",", header=TRUE))
 unlink(TempZip)
 ```  
-  
+- **Rather than download, it will load the unziped CSV file already present in this repo:**
+```{r Loading Data from Repo, echo=TRUE}
+StepsDFrame <- data.frame(read.csv("activity.csv", sep=",", header=TRUE))
+```  
   
 ## 2. Plots  
 
